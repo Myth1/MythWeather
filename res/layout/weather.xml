@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+        >
+        
+        <TextView 
+	        android:id="@+id/tv_city"
+	        android:layout_height="wrap_content"
+	        android:layout_width="match_parent"
+	        android:gravity="center"
+	        android:text="area"
+	        android:textSize="35sp"
+	        android:background="#9c9c9c"
+        />
+    </RelativeLayout>
+    <TextView 
+            android:id="@+id/tv_ptime"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="18：00"
+            android:layout_gravity="top|right"
+            android:textColor="#ff0000"
+            android:textSize="20sp"
+            />
+    <LinearLayout 
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        >
+        
+        <TextView 
+            android:id="@+id/tv_weather"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="晴"
+            android:layout_gravity="center"
+            android:textSize="45sp"
+            />
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            >
+             <TextView 
+	            android:id="@+id/tv_temp1"
+	            android:layout_height="wrap_content"
+	            android:layout_width="wrap_content"
+	            android:text="23"
+	            android:layout_gravity="center"
+	            android:textSize="25sp"
+            />
+             <TextView 
+	            android:id="@+id/tv_temp3"
+	            android:layout_height="wrap_content"
+	            android:layout_width="wrap_content"
+	            android:text="~"
+	            android:layout_gravity="center"
+	            android:textSize="25sp"
+            />
+             <TextView 
+	            android:id="@+id/tv_temp2"
+	            android:layout_height="wrap_content"
+	            android:layout_width="wrap_content"
+	            android:text="29"
+	            android:layout_gravity="center"
+	            android:textSize="25sp"
+            />
+            
+        </LinearLayout>
+        
+        
+    </LinearLayout>
+    
+   	
+
+</LinearLayout>
