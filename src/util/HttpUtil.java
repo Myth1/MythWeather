@@ -21,7 +21,7 @@ public class HttpUtil {
 				try {
 					URL url = new URL(path);
 					conn = (HttpURLConnection) url.openConnection();
-					conn.setConnectTimeout(3000);
+					conn.setConnectTimeout(5000);
 					conn.setRequestMethod("GET");
 					int code = conn.getResponseCode();
 					if(code == 200){

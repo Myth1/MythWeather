@@ -3,19 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <TextView 
+
+    <TextView
         android:id="@+id/tv_currentArea"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="area"
         android:textSize="35sp"
-        android:background="#9c9c9c"
-        />
-    <ListView 
+        android:background="#9c9c9c" />
+
+    <ListView
         android:id="@+id/lv_listArea"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        ></ListView>
+        android:layout_height="match_parent" >
+    </ListView>
 
 </LinearLayout>

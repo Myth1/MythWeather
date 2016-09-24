@@ -75,12 +75,13 @@ public class HandlerUtil {
 		try {
 			JSONObject jsonObject = new JSONObject(response);
 			JSONObject jsonInfo = jsonObject.getJSONObject("weatherinfo");
+			String weathercode = jsonInfo.getString("cityid");
 			String city = jsonInfo.getString("city");
 			String temp1 = jsonInfo.getString("temp1");
 			String temp2 = jsonInfo.getString("temp2");
 			String weather = jsonInfo.getString("weather");
 			String ptime = jsonInfo.getString("ptime");
-			saveWeatherInfo(context,city,temp1,temp2,weather,ptime);
+			saveWeatherInfo(context,city,temp1,temp2,weather,ptime,weathercode);
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -88,14 +89,15 @@ public class HandlerUtil {
 		}
 	}
 	private static void saveWeatherInfo(Context context, String city, String temp1, String temp2, String weather,
-			String ptime) {
+			String ptime,String weathercode) {
 		Editor edit = context.getSharedPreferences("config", 0).edit();
-//		edit.putBoolean("city_selected", true);
+		edit.putBoolean("country_selected", true);
 		edit.putString("city", city);
 		edit.putString("temp1", temp1);
 		edit.putString("temp2", temp1);
 		edit.putString("weather", weather);
 		edit.putString("ptime", ptime);
+		edit.putString("weathercode", weathercode);
 		edit.commit();
 	}
 }

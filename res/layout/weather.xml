@@ -3,22 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <RelativeLayout 
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-        >
-        
-        <TextView 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#9c9c9c" >
+
+        <TextView
+            android:id="@+id/tv_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="主页"
+            android:textSize="28sp" />
+		<TextView 
 	        android:id="@+id/tv_city"
 	        android:layout_height="wrap_content"
 	        android:layout_width="match_parent"
 	        android:gravity="center"
 	        android:text="area"
 	        android:textSize="35sp"
-	        android:background="#9c9c9c"
         />
+        
+
+        <TextView
+            android:id="@+id/tv_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="更新"
+            android:textSize="28sp" />
     </RelativeLayout>
+    
+    
     <TextView 
             android:id="@+id/tv_ptime"
             android:layout_height="wrap_content"

@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,12 +25,15 @@ import util.HandlerUtil;
 import util.HttpCallbackListener;
 import util.HttpUtil;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity  {
 	protected static final int PROVINCE = 0;
 	protected static final int CITY = 1;
 	protected static final int COUNTRY = 2;
+	private boolean from_weather_activity ;
+	
 	private ListView lv_listArea;
 	private TextView tv_currentArea;
+
 	private ProgressDialog progressDialog;
 	private AreaDB areadb;
 	
@@ -46,12 +51,23 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.choosearea);
+		SharedPreferences sp = getSharedPreferences("config", 0);
+		from_weather_activity = getIntent().getBooleanExtra("from_weather_activity", true);
+		if(sp.getBoolean("country_selected", false) && !from_weather_activity){
+			Intent intent = new Intent(this,Weather.class);
+			startActivity(intent);
+			finish();
+			return;
+		}
+		
 		datalist = new ArrayList<String>();
 		lv_listArea = (ListView) findViewById(R.id.lv_listArea);
 		tv_currentArea = (TextView) findViewById(R.id.tv_currentArea);
+		
 		adapter = new ArrayAdapter<String>(this, R.layout.item, datalist);
 		lv_listArea.setAdapter(adapter);
 		areadb = AreaDB.getInstance(this);
+		
 		lv_listArea.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -87,8 +103,8 @@ public class MainActivity extends Activity {
 				String province_name = province.getProvince_name();
 				datalist.add(province_name);
 			}
-			adapter.notifyDataSetChanged();
 			lv_listArea.setSelection(0);
+			adapter.notifyDataSetChanged();
 			tv_currentArea.setText("中国");
 			currentLevel = PROVINCE;
 		}else{
@@ -105,8 +121,8 @@ public class MainActivity extends Activity {
 				String city_name = city.getCity_name();
 				datalist.add(city_name);
 			}
-			adapter.notifyDataSetChanged();
 			lv_listArea.setSelection(0);
+			adapter.notifyDataSetChanged();
 			tv_currentArea.setText(selectedProvince.getProvince_name());
 			currentLevel = CITY;
 		}else{
@@ -123,8 +139,8 @@ public class MainActivity extends Activity {
 				String country_name = country.getCountry_name();
 				datalist.add(country_name);
 			}
-			adapter.notifyDataSetChanged();
 			lv_listArea.setSelection(0);
+			adapter.notifyDataSetChanged();
 			tv_currentArea.setText(selectedCity.getCity_name());
 			currentLevel = COUNTRY;
 		}else{
@@ -204,15 +220,19 @@ public class MainActivity extends Activity {
 	
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		super.onBackPressed();
+//		super.onBackPressed();
 		
-		if(currentLevel == PROVINCE ){
+		if(currentLevel == COUNTRY ){
 			queryCity();
 		}else if(currentLevel == CITY){
-			queryCountry();
+			queryProvince();
 		}else{
+//			if(from_weather_activity){
+//				
+//			}
 			finish();
 		}
 	}
+
+	
 }

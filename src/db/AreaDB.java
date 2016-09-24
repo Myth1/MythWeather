@@ -31,13 +31,14 @@ public class AreaDB {
 		ArrayList<Province> provinces = new ArrayList<Province>();
 		Cursor cursor = db.query("province", null, null, null, null, null, null);
 		if(cursor.moveToFirst()){
-			while(cursor.moveToNext()){
+			do{
 				Province province = new Province();
-				province.setId(cursor.getInt(0));
+//				province.setId(cursor.getInt(0));
+				province.setId(cursor.getInt(cursor.getColumnIndex("_id")));
 				province.setProvince_code(cursor.getString(cursor.getColumnIndex("province_code")));
 				province.setProvince_name(cursor.getString(cursor.getColumnIndex("province_name")));
 				provinces.add(province);
-			}
+			}while(cursor.moveToNext());
 		}
 		if(cursor != null){
 			cursor.close();
@@ -59,7 +60,7 @@ public class AreaDB {
 		ArrayList<City> cities = new ArrayList<City>();
 		Cursor cursor = db.query("city", null, "province_id=?", new String[]{String.valueOf(province_id)}, null, null, null);
 		if(cursor.moveToFirst()){
-			while(cursor.moveToNext()){
+			do{
 				City city = new City();
 				city.setCity_id(cursor.getInt(cursor.getColumnIndex("_id")));
 				city.setCity_code(cursor.getString(cursor.getColumnIndex("city_code")));
@@ -67,7 +68,7 @@ public class AreaDB {
 				city.setProvince_id(province_id);
 				cities.add(city);
 				
-			}
+			}while(cursor.moveToNext());
 		}
 		if(cursor != null){
 			cursor.close();
@@ -90,7 +91,7 @@ public class AreaDB {
 		ArrayList<Country> countries = new ArrayList<Country>();
 		Cursor cursor = db.query("country", null, "city_id=?", new String[]{String.valueOf(city_id)}, null, null, null);
 		if(cursor.moveToFirst()){
-			while(cursor.moveToNext()){
+			do{
 				Country country = new Country();
 				country.setCountry_id(cursor.getInt(cursor.getColumnIndex("_id")));
 				country.setCountry_code(cursor.getString(cursor.getColumnIndex("country_code")));
@@ -98,7 +99,7 @@ public class AreaDB {
 				country.setCity_id(city_id);
 				countries.add(country);
 				
-			}
+			}while(cursor.moveToNext());
 		}
 		if(cursor != null){
 			cursor.close();
